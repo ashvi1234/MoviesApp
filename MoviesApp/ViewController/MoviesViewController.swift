@@ -6,18 +6,20 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MoviesViewController: UIViewController {
-
+    
     @IBOutlet weak var movieTblView: UITableView!
-    var getMovies = MovieViewModel()
+    private var getMovies = MovieViewModel()
+    private var movies: [MovieModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMoviesList()
+        DispatchQueue.main.async {
+            self.getMoviesList()
+        }
     }
-
-
 }
 
 //MARK:- API call
@@ -25,7 +27,10 @@ extension MoviesViewController {
     func getMoviesList(){
         getMovies.getMovies { success, moviesResponse in
             if success {
-                print("moviesResponse--->",moviesResponse ?? "")
+                self.movies = moviesResponse ?? []
+                DispatchQueue.main.async {
+                    self.movieTblView.reloadData()
+                }
             }else{
                 print("no response")
             }
@@ -37,11 +42,16 @@ extension MoviesViewController {
 //MARK:- TableView Datasource + Delegates Methods
 extension MoviesViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTblView.dequeueReusableCell(withIdentifier: "cell") as! MoviesTableViewCell
+        
+        let movie = movies[indexPath.row]
+        let posterImage = "https://image.tmdb.org/t/p/w500\(movie.posterPath)"
+        let url = URL(string: posterImage)
+        cell.mPosterImgView.kf.setImage(with: url)
         
         return cell
     }
@@ -58,6 +68,5 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate{
 //MARK:- TableView Cell
 class MoviesTableViewCell: UITableViewCell {
     @IBOutlet weak var mPosterImgView: UIImageView!
-    
 }
 

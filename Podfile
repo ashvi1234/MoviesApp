@@ -9,6 +9,7 @@ target 'MoviesApp' do
     pod 'SwiftyJSON'
     pod 'Alamofire'
     pod 'SVProgressHUD'
+    pod 'Kingfisher'
 
   target 'MoviesAppTests' do
     inherit! :search_paths

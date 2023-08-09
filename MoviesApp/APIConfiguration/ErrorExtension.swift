@@ -21,7 +21,7 @@ enum RegistrationError: Error {
     case unsuppotedURLError         // -1003
     case unknownError
 }
-
+var onErrorHandling     : ((Error) -> Void)?
 /// Get the error object and filter by error code and return the error message
 func passErrorCode(andReturn error : NSError) -> Error {
     let errorCode = error.code
@@ -83,5 +83,5 @@ extension RegistrationError: LocalizedError {
             return NSLocalizedString("Description of unknown error", comment: "Unknown Error")
         }
     }
-    
 }
+

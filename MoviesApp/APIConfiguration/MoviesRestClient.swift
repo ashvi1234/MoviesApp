@@ -7,6 +7,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SVProgressHUD
 
 enum Result<T, E: Error> {
     case success(T)
@@ -78,10 +79,10 @@ class MoviesRestClient {
                 case .success(let responseData) :
                     completion(result)
                 case .failure(let error) :
-                    //                    completion(nil)
-                    //                    SVProgressHUD.dismiss()
-                    //                    onErrorHandling?(error)
-                    print("error --->",error)
+                    let customError = passErrorCode(andReturn: error as NSError)
+                    completion(.failure(.custom(string: "An error occured during request : \(customError.localizedDescription)")))
+                    SVProgressHUD.dismiss()
+                    onErrorHandling?(error)
                 }
             }
         }, type: requestType, data: parameters, isAbsoluteURL: true, headers : headersObject , isSilent: isSilent, jsonSerialize: jsonSerialize)
