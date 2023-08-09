@@ -11,7 +11,7 @@ import Kingfisher
 class MoviesViewController: UIViewController {
     
     @IBOutlet weak var movieTblView: UITableView!
-    private var getMovies = MovieViewModel()
+    private var movieViewModel = MovieViewModel()
     private var movies: [MovieModel] = []
     
     override func viewDidLoad() {
@@ -22,10 +22,10 @@ class MoviesViewController: UIViewController {
     }
 }
 
-//MARK:- API call
+//MARK: - API call
 extension MoviesViewController {
     func getMoviesList(){
-        getMovies.getMovies { success, moviesResponse in
+        movieViewModel.getMovies { success, moviesResponse in
             if success {
                 self.movies = moviesResponse ?? []
                 DispatchQueue.main.async {
@@ -39,7 +39,7 @@ extension MoviesViewController {
     
 }
 
-//MARK:- TableView Datasource + Delegates Methods
+//MARK: - TableView Datasource + Delegates Methods
 extension MoviesViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
@@ -49,7 +49,7 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate{
         let cell = movieTblView.dequeueReusableCell(withIdentifier: "cell") as! MoviesTableViewCell
         
         let movie = movies[indexPath.row]
-        let posterImage = "https://image.tmdb.org/t/p/w500\(movie.posterPath)"
+        let posterImage = "\(IMAGE_BASE_URL)\(movie.posterPath)"
         let url = URL(string: posterImage)
         cell.mPosterImgView.kf.setImage(with: url)
         
@@ -57,7 +57,10 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let movieDetails = storyboard?.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        movieDetails.movieId = movies[indexPath.row].id
+        movieDetails.movieTitle = movies[indexPath.row].title
+        navigationController?.pushViewController(movieDetails, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -65,7 +68,7 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
-//MARK:- TableView Cell
+//MARK: - TableView Cell
 class MoviesTableViewCell: UITableViewCell {
     @IBOutlet weak var mPosterImgView: UIImageView!
 }
