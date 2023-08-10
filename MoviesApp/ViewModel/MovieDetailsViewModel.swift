@@ -11,9 +11,9 @@ import SVProgressHUD
 
 class MovieDetailsViewModel {
     
-    var movieDetailsObject: [MovieDetailsModel]? = []
+    var movieDetailsObject: MovieDetailsModel?
     
-    func getMovieDetails(movie_id: Int, completionBlock: @escaping(Bool, [MovieDetailsModel]?)->()){
+    func getMovieDetails(movie_id: Int, completionBlock: @escaping(Bool, MovieDetailsModel?)->()){
         
         MoviesRestClient().callSecureAPI(api: "\(MOVIE_DETAILS)\(movie_id)?api_key=\(API_KEY)", completion: { (result) in
             DispatchQueue.main.async { [self] in
@@ -34,7 +34,7 @@ class MovieDetailsViewModel {
                             for contry in 0..<productionCountries.count{
                                 let productionCountry = productionCountries[contry]
                                 
-                                movieDetailsObject = [MovieDetailsModel(title: responseData["title"].stringValue, overview: responseData["overview"].stringValue, posterPath: responseData["poster_path"].stringValue, releaseDate: responseData["release_date"].stringValue, voteAverage: responseData["vote_average"].doubleValue, tagline: responseData["tagline"].stringValue, homepage: responseData["homepage"].stringValue, originalLanguage: responseData["original_language"].stringValue, originalTitle: responseData["original_title"].stringValue, popularity: responseData["popularity"].stringValue, revenue: responseData["revenue"].stringValue, runtime: responseData["runtime"].stringValue, status: responseData["status"].stringValue, voteCount: responseData["vote_count"].stringValue, productionCompany: [ProductionCompany(name: productionCompany["name"].stringValue, logoPath: productionCompany["logo_path"].stringValue)], productionContries: [ProductionContries(name: productionCountry["name"].stringValue)], genres: [Genres(name: gen["name"].stringValue)])]                                
+                                movieDetailsObject = MovieDetailsModel(title: responseData["title"].stringValue, overview: responseData["overview"].stringValue, posterPath: responseData["poster_path"].stringValue, backdropPath: responseData["backdrop_path"].stringValue, releaseDate: responseData["release_date"].stringValue, voteAverage: responseData["vote_average"].doubleValue, tagline: responseData["tagline"].stringValue, homepage: responseData["homepage"].stringValue, originalLanguage: responseData["original_language"].stringValue, originalTitle: responseData["original_title"].stringValue, popularity: responseData["popularity"].stringValue, revenue: responseData["revenue"].stringValue, runtime: responseData["runtime"].stringValue, status: responseData["status"].stringValue, voteCount: responseData["vote_count"].stringValue, productionCompany: [ProductionCompany(name: productionCompany["name"].stringValue, logoPath: productionCompany["logo_path"].stringValue)], productionContries: [ProductionContries(name: productionCountry["name"].stringValue)], genres: [Genres(name: gen["name"].stringValue)])
                             }
                             
                         }

@@ -11,6 +11,7 @@ struct MovieDetailsModel: Codable {
     let title: String
     let overview: String
     let posterPath: String?
+    let backdropPath: String
     let releaseDate: String
     let voteAverage: Double
     let tagline: String

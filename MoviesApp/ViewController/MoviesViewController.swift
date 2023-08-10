@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class MoviesViewController: UIViewController {
-    
+    //MARK: - Variables
     @IBOutlet weak var movieTblView: UITableView!
     private var movieViewModel = MovieViewModel()
     private var movies: [MovieModel] = []
@@ -59,7 +59,6 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movieDetails = storyboard?.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetails.movieId = movies[indexPath.row].id
-        movieDetails.movieTitle = movies[indexPath.row].title
         navigationController?.pushViewController(movieDetails, animated: true)
     }
     
