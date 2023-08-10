@@ -71,7 +71,6 @@ class MoviesRestClient {
         
         let headersObject =  ["Content-Type" : "application/json", "Authorization" : nil]
         url = api.replacingOccurrences(of: "{{userId}}", with: userId)
-        print("url-------->",url)
         
         self.callApi(api: url, completion: { (result) in
             DispatchQueue.main.async {

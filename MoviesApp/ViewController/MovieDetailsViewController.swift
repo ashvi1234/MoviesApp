@@ -29,6 +29,7 @@ class MovieDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Movie Details"
         DispatchQueue.main.async {
             self.getMoviesDetails()
         }
@@ -49,7 +50,7 @@ extension MovieDetailsViewController {
                         self.mvPosterImgView.kf.setImage(with: mvPosterUrl)
                         self.titleLbl.text = movie.title
                         self.ratingLbl.text = String(movie.voteAverage)
-                        var rnTime = ""
+                        let rnTime = ""
                         let runTime = rnTime.convertTime(timeSec: movie.runtime)
                         self.runtimeLbl.text = runTime
                         let genreNames = movie.genres.map { $0.name }
@@ -57,7 +58,7 @@ extension MovieDetailsViewController {
                         self.genreLbl.text = allGenres
                         self.lngLbl.text = movie.originalLanguage == "en" ? "English" : "English"
                         self.overviewLbl.text = movie.overview
-                        var relDate = ""
+                        let relDate = ""
                         let releaseDate = relDate.convertDate(dateString: movie.releaseDate, currentFormate: "yyyy-MM-dd", changeFormateTo: "dd-MM-yyyy")
                         self.releaseDateLbl.text = releaseDate
                         if (movie.status == "Released") {

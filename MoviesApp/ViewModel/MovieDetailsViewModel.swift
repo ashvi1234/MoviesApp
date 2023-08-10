@@ -18,10 +18,7 @@ class MovieDetailsViewModel {
         MoviesRestClient().callSecureAPI(api: "\(MOVIE_DETAILS)\(movie_id)?api_key=\(API_KEY)", completion: { (result) in
             DispatchQueue.main.async { [self] in
                 switch result {
-                    
                 case .success(let responseData) :
-                    print("movies Details----",responseData)
-                    
                     let genres = responseData["genres"]
                     let productionCompanies = responseData["production_companies"]
                     let productionCountries = responseData["production_countries"]

@@ -20,14 +20,13 @@ class MovieViewModel {
                 switch result {
                     
                 case .success(let responseData) :
-                    print("movieslist----",responseData)
                     let moviess = responseData["results"]
                     for m in 0..<moviess.count{
                         let moviesL = moviess[m]
                         let movieObject = [MovieModel(id: moviesL["id"].intValue, title: moviesL["title"].stringValue, overview: moviesL["overview"].stringValue, releaseDate: moviesL["release_date"].stringValue, posterPath: moviesL["poster_path"].stringValue, backdropPath: moviesL["backdrop_path"].stringValue, voteAverage: moviesL["vote_average"].doubleValue, voteCount: moviesL["vote_count"].intValue)]
                         movieObjects?.append(contentsOf: movieObject)
                     }
-                    completionBlock(true, self.movieObjects)
+                    completionBlock(true, self.movieObjects?.sorted(by: { $0.voteAverage > $1.voteAverage }).prefix(10).map { $0 })
                     
                 case .failure(let error) :
                     SVProgressHUD.dismiss()
