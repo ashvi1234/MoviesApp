@@ -29,6 +29,7 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="azH-K7-6bU">
                                                     <rect key="frame" x="10" y="10" width="373" height="89"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="TableViewController.ImageCell.ImageView"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -86,6 +87,7 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6xq-tu-cOG">
                                                 <rect key="frame" x="16" y="16" width="361" height="200"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="backpath_image"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="2jz-eu-BWR"/>
                                                 </constraints>
@@ -96,6 +98,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3la-X6-AJy">
                                                 <rect key="frame" x="16" y="224" width="150" height="200"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="poster_image"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="tKe-zA-Bbx"/>
                                                     <constraint firstAttribute="height" constant="200" id="zoO-8e-S0V"/>
@@ -106,6 +109,9 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y76-gL-1ee">
                                                         <rect key="frame" x="0.0" y="0.0" width="203" height="0.0"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="title" label="label">
+                                                            <bool key="isElement" value="NO"/>
+                                                        </accessibility>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -124,6 +130,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBr-OD-TX6">
                                                                 <rect key="frame" x="60" y="0.0" width="143" height="50"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="rating"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -134,13 +141,14 @@
                                                         <rect key="frame" x="0.0" y="58" width="203" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Runtime:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpm-i2-Va5">
-                                                                <rect key="frame" x="0.0" y="0.0" width="52.333333333333336" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="50"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dia-KO-FRC">
-                                                                <rect key="frame" x="52.333333333333343" y="0.0" width="150.66666666666666" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="203" height="50"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="runtime"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -161,6 +169,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6G-cS-tqy">
                                                                 <rect key="frame" x="52" y="0.0" width="151" height="50"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="genre"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -171,13 +180,14 @@
                                                         <rect key="frame" x="0.0" y="166" width="203" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3w-hO-015">
-                                                                <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="34"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CT3-M9-YIq">
-                                                                <rect key="frame" x="62.666666666666643" y="0.0" width="140.33333333333337" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="203" height="34"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="language"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -197,6 +207,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gr9-f1-zyY">
                                                 <rect key="frame" x="16" y="451" width="361" height="0.0"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="overview"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -215,6 +226,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4J9-HA-cs9">
                                                                 <rect key="frame" x="88.666666666666657" y="0.0" width="272.33333333333337" height="17"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="release_date"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -232,6 +244,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhK-w0-ZvC">
                                                                 <rect key="frame" x="45.666666666666657" y="0.0" width="315.33333333333337" height="17"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="status"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -249,6 +262,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfS-pe-4FZ">
                                                                 <rect key="frame" x="33.666666666666657" y="0.0" width="327.33333333333337" height="17"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="vote"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -266,6 +280,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYw-Ik-j6t">
                                                                 <rect key="frame" x="150.66666666666663" y="0.0" width="210.33333333333337" height="17"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="company"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -283,6 +298,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCa-sF-RZy">
                                                                 <rect key="frame" x="133" y="0.0" width="228" height="17"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="country"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
