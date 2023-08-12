@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import SVProgressHUD
 
 class MovieDetailsViewController: UIViewController {
     //MARK: - Variables
@@ -30,15 +31,14 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Movie Details"
-        DispatchQueue.main.async {
-            self.getMoviesDetails()
-        }
+        self.getMoviesDetails()
     }
 }
 
 //MARK: - API call
 extension MovieDetailsViewController {
     func getMoviesDetails() {
+        SVProgressHUD.show()
         movieDetailsViewModel.getMovieDetails(movie_id: movieId) { success, movieDetailsResp in
             if success {
                 DispatchQueue.main.async {
@@ -71,9 +71,10 @@ extension MovieDetailsViewController {
                         self.prodctnCompLbl.text = movie.productionCompany[0].name
                         self.prodctnCntryLbl.text = movie.productionContries[0].name
                     }
+                    SVProgressHUD.dismiss()
                 }
             }else{
-                print("no response")
+                SVProgressHUD.dismiss()
             }
         }
     }

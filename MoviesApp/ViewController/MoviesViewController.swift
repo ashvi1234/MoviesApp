@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SVProgressHUD
 
 class MoviesViewController: UIViewController {
     //MARK: - Variables
@@ -16,23 +17,23 @@ class MoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.getMoviesList()
-        }
+        self.getMoviesList()
     }
 }
 
 //MARK: - API call
 extension MoviesViewController {
     func getMoviesList(){
+        SVProgressHUD.show()
         movieViewModel.getMovies { success, moviesResponse in
             if success {
                 self.movies = moviesResponse ?? []
                 DispatchQueue.main.async {
                     self.movieTblView.reloadData()
                 }
+                SVProgressHUD.dismiss()
             }else{
-                print("no response")
+                SVProgressHUD.dismiss()
             }
         }
     }
