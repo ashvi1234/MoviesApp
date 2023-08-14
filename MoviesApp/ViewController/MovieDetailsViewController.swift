@@ -27,10 +27,9 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var prodctnCompLbl: UILabel!
     @IBOutlet weak var prodctnCntryLbl: UILabel!
     var movieId = 0
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewModel = MovieDetailsViewModel()
         viewModel.onError = { error in
             print("Error fetching movie details: \(error)")

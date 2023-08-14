@@ -17,18 +17,18 @@ class MoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewModel = MovieViewModel()
-        viewModel.onDataUpdate = { [weak self] in
-            DispatchQueue.main.async {
-                self?.movieTblView.reloadData()
-            }
-        }
         viewModel.onError = { error in
             print("Error fetching movie list: \(error)")
         }
         
-        viewModel.getMovies()
+        SVProgressHUD.show()
+        viewModel.getMovies { success, movieResultResp in
+            DispatchQueue.main.async {
+                self.movieTblView.reloadData()
+                SVProgressHUD.dismiss()
+            }
+        }
     }
 }
 

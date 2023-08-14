@@ -16,14 +16,12 @@ class MovieViewModel {
     var onDataUpdate: (() -> Void)?
     var onError: ((Error) -> Void)?
     
-    func getMovies() {
-        SVProgressHUD.show()
+    func getMovies(completionBlock: @escaping(Bool, [Results]?)->()) {
         AF.request(MOVIE_LIST).responseDecodable(of: MovieModel.self) { response in
             switch response.result {
             case .success(let movieModel):
                 self.movieList = movieModel.results.sorted(by: { $0.voteAverage > $1.voteAverage }).prefix(10).map { $0 }
-                self.onDataUpdate?()
-                SVProgressHUD.dismiss()
+                completionBlock(true, self.movieList)
             case .failure(let error):
                 self.onError?(error)
             }
