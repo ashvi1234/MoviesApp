@@ -333,6 +333,7 @@
                                             <constraint firstItem="HQN-el-oNZ" firstAttribute="bottom" secondItem="6xq-tu-cOG" secondAttribute="bottom" constant="-60" id="O64-BL-sUS"/>
                                             <constraint firstItem="HQN-el-oNZ" firstAttribute="trailing" secondItem="6xq-tu-cOG" secondAttribute="trailing" constant="-140" id="OIy-Kt-Aqk"/>
                                             <constraint firstItem="Gr9-f1-zyY" firstAttribute="leading" secondItem="6xq-tu-cOG" secondAttribute="leading" id="P1R-68-KAs"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="B7I-dU-A5y" secondAttribute="bottom" constant="50" id="P1S-kF-xlb"/>
                                             <constraint firstItem="Gr9-f1-zyY" firstAttribute="top" secondItem="jya-6M-R6b" secondAttribute="bottom" constant="2" id="Qa8-zg-8UH"/>
                                             <constraint firstItem="6xq-tu-cOG" firstAttribute="top" secondItem="dbw-TA-iAP" secondAttribute="top" constant="16" id="V1N-AO-oWD"/>
                                             <constraint firstItem="jya-6M-R6b" firstAttribute="trailing" secondItem="6xq-tu-cOG" secondAttribute="trailing" id="aPg-ve-i5L"/>
@@ -341,7 +342,7 @@
                                             <constraint firstItem="9RA-mY-ZGI" firstAttribute="top" secondItem="3la-X6-AJy" secondAttribute="top" id="fOE-3a-m4m"/>
                                             <constraint firstItem="jya-6M-R6b" firstAttribute="leading" secondItem="6xq-tu-cOG" secondAttribute="leading" id="hCx-bN-CvZ"/>
                                             <constraint firstItem="3la-X6-AJy" firstAttribute="top" secondItem="6xq-tu-cOG" secondAttribute="bottom" constant="8" id="mey-xq-umc"/>
-                                            <constraint firstAttribute="width" secondItem="dbw-TA-iAP" secondAttribute="height" multiplier="393:734" id="sCq-7o-atr"/>
+                                            <constraint firstAttribute="width" secondItem="dbw-TA-iAP" secondAttribute="height" multiplier="393:734" priority="250" id="sCq-7o-atr"/>
                                             <constraint firstItem="jya-6M-R6b" firstAttribute="top" secondItem="9RA-mY-ZGI" secondAttribute="bottom" constant="8" id="squ-jU-7vd"/>
                                             <constraint firstAttribute="trailing" secondItem="6xq-tu-cOG" secondAttribute="trailing" constant="16" id="t42-fm-rGm"/>
                                             <constraint firstItem="6xq-tu-cOG" firstAttribute="leading" secondItem="dbw-TA-iAP" secondAttribute="leading" constant="16" id="tlc-lm-RTK"/>
@@ -357,7 +358,7 @@
                                     <constraint firstAttribute="trailing" secondItem="dbw-TA-iAP" secondAttribute="trailing" id="g4y-Yb-jLj"/>
                                     <constraint firstItem="dbw-TA-iAP" firstAttribute="width" secondItem="4jn-Ud-dnM" secondAttribute="width" id="i1t-JL-Cyq"/>
                                     <constraint firstItem="dbw-TA-iAP" firstAttribute="leading" secondItem="4jn-Ud-dnM" secondAttribute="leading" id="t2y-zF-b78"/>
-                                    <constraint firstAttribute="bottom" secondItem="dbw-TA-iAP" secondAttribute="bottom" constant="23" id="wP0-6Y-0YT"/>
+                                    <constraint firstAttribute="bottom" secondItem="dbw-TA-iAP" secondAttribute="bottom" id="wP0-6Y-0YT"/>
                                 </constraints>
                             </scrollView>
                         </subviews>

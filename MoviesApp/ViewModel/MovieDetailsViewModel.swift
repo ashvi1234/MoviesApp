@@ -17,11 +17,13 @@ class MovieDetailsViewModel {
     var onError: ((Error) -> Void)?
     
     func getMovieDetails(movie_id: Int, completionBlock: @escaping(Bool, MovieDetailsModel?)->()){
+        SVProgressHUD.show()
         AF.request("\(MOVIE_DETAILS)\(movie_id)?api_key=\(API_KEY)").responseDecodable(of: MovieDetailsModel.self) { response in
             switch response.result {
             case .success(let movieDetails):
                 self.movieDetails = movieDetails
                 completionBlock(true, self.movieDetails)
+                SVProgressHUD.dismiss()
             case .failure(let error):
                 self.onError?(error)
             }

@@ -30,6 +30,7 @@ class MovieDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Movie Details"
         viewModel = MovieDetailsViewModel()
         viewModel.onError = { error in
             print("Error fetching movie details: \(error)")
