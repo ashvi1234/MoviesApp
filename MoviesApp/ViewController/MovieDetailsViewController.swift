@@ -11,7 +11,7 @@ import SVProgressHUD
 
 class MovieDetailsViewController: UIViewController {
     //MARK: - Variables
-    private var movieDetailsViewModel = MovieDetailsViewModel()
+    var viewModel: MovieDetailsViewModel!
     private var movieDetails: MovieDetailsModel?
     @IBOutlet weak var homePgImgView: UIImageView!
     @IBOutlet weak var mvPosterImgView: UIImageView!
@@ -27,55 +27,57 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var prodctnCompLbl: UILabel!
     @IBOutlet weak var prodctnCntryLbl: UILabel!
     var movieId = 0
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Movie Details"
-        self.getMoviesDetails()
-    }
-}
-
-//MARK: - API call
-extension MovieDetailsViewController {
-    func getMoviesDetails() {
+        
+        viewModel = MovieDetailsViewModel()
+        viewModel.onError = { error in
+            print("Error fetching movie details: \(error)")
+        }
         SVProgressHUD.show()
-        movieDetailsViewModel.getMovieDetails(movie_id: movieId) { success, movieDetailsResp in
-            if success {
-                DispatchQueue.main.async {
-                    self.movieDetails = movieDetailsResp
-                    if let movie = self.movieDetails {
-                        let homePageUrl = URL(string: "\(IMAGE_BASE_URL)\(movie.backdropPath )")
-                        self.homePgImgView.kf.setImage(with: homePageUrl)
-                        let mvPosterUrl = URL(string: "\(IMAGE_BASE_URL)\(movie.posterPath ?? "")")
-                        self.mvPosterImgView.kf.setImage(with: mvPosterUrl)
-                        self.titleLbl.text = movie.title
-                        self.ratingLbl.text = String(movie.voteAverage)
-                        let rnTime = ""
-                        let runTime = rnTime.convertTime(timeSec: movie.runtime)
-                        self.runtimeLbl.text = runTime
-                        let genreNames = movie.genres.map { $0.name }
-                        let allGenres = genreNames.joined(separator: ", ")
-                        self.genreLbl.text = allGenres
-                        self.lngLbl.text = movie.originalLanguage == "en" ? "English" : "English"
-                        self.overviewLbl.text = movie.overview
-                        let relDate = ""
-                        let releaseDate = relDate.convertDate(dateString: movie.releaseDate, currentFormate: "yyyy-MM-dd", changeFormateTo: "dd-MM-yyyy")
-                        self.releaseDateLbl.text = releaseDate
-                        if (movie.status == "Released") {
-                            self.statusLbl.textColor = UIColor.green
-                        }else{
-                            self.statusLbl.textColor = UIColor.red
-                        }
-                        self.statusLbl.text = movie.status
-                        self.voteCountLbl.text = movie.voteCount
-                        self.prodctnCompLbl.text = movie.productionCompany[0].name
-                        self.prodctnCntryLbl.text = movie.productionContries[0].name
-                    }
-                    SVProgressHUD.dismiss()
-                }
-            }else{
+        viewModel.getMovieDetails(movie_id: movieId) { success, movieDetailsResp in
+            SVProgressHUD.dismiss()
+            DispatchQueue.main.async {
+                self.updateUI()
                 SVProgressHUD.dismiss()
             }
         }
     }
+    
+    func updateUI() {
+        guard let movieDetails = viewModel.movieDetails else {
+            return
+        }
+        
+        // Update your UI elements using the stored data
+        let homePageUrl = URL(string: "\(IMAGE_BASE_URL)\(movieDetails.backdropPath )")
+        self.homePgImgView.kf.setImage(with: homePageUrl)
+        let mvPosterUrl = URL(string: "\(IMAGE_BASE_URL)\(movieDetails.posterPath )")
+        self.mvPosterImgView.kf.setImage(with: mvPosterUrl)
+        self.titleLbl.text = movieDetails.title
+        self.ratingLbl.text = String(movieDetails.voteAverage)
+        let rnTime = ""
+        let runTime = rnTime.convertTime(timeSec: String(movieDetails.runtime))
+        self.runtimeLbl.text = runTime
+        let genreNames = movieDetails.genres.map { $0.name }.joined(separator: ", ")
+        genreLbl.attributedText = "Genres: \(genreNames)".withBoldText(text: "\(genreNames)")
+        self.lngLbl.text = movieDetails.originalLanguage == "en" ? "English" : "English"
+        self.overviewLbl.text = movieDetails.overview
+        let relDate = ""
+        let releaseDate = relDate.convertDate(dateString: movieDetails.releaseDate, currentFormate: "yyyy-MM-dd", changeFormateTo: "dd-MM-yyyy")
+        self.releaseDateLbl.text = releaseDate
+        if (movieDetails.status == "Released") {
+            self.statusLbl.textColor = UIColor.green
+        }else{
+            self.statusLbl.textColor = UIColor.red
+        }
+        self.statusLbl.text = movieDetails.status
+        self.voteCountLbl.text = String(movieDetails.voteCount)
+        let pCmpNames = movieDetails.productionCompanies.map { $0.name }.joined(separator: ", ")
+        prodctnCompLbl.attributedText = "Production Companies: \(pCmpNames)".withBoldText(text: "\(pCmpNames)")
+        let pCntryNames = movieDetails.productionCountries.map { $0.name }.joined(separator: ", ")
+        prodctnCntryLbl.attributedText = "Production Contries: \(pCntryNames)".withBoldText(text: "\(pCntryNames)")
+    }
 }
+

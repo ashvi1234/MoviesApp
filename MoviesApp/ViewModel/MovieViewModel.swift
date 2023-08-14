@@ -8,33 +8,25 @@
 import Foundation
 import UIKit
 import SVProgressHUD
+import Alamofire
 
 class MovieViewModel {
     
-    var movieObjects: [MovieModel]? = []
+    var movieList: [Results] = [] // Store decoded Results objects here
+    var onDataUpdate: (() -> Void)?
+    var onError: ((Error) -> Void)?
     
-    func getMovies(completionBlock: @escaping(Bool, [MovieModel]?)->()){
-        
-        MoviesRestClient().callSecureAPI(api: MOVIE_LIST, completion: { (result) in
-            DispatchQueue.main.async { [self] in
-                switch result {
-                    
-                case .success(let responseData) :
-                    let moviess = responseData["results"]
-                    for m in 0..<moviess.count{
-                        let moviesL = moviess[m]
-                        let movieObject = [MovieModel(id: moviesL["id"].intValue, title: moviesL["title"].stringValue, overview: moviesL["overview"].stringValue, releaseDate: moviesL["release_date"].stringValue, posterPath: moviesL["poster_path"].stringValue, backdropPath: moviesL["backdrop_path"].stringValue, voteAverage: moviesL["vote_average"].doubleValue, voteCount: moviesL["vote_count"].intValue)]
-                        movieObjects?.append(contentsOf: movieObject)
-                    }
-                    completionBlock(true, self.movieObjects?.sorted(by: { $0.voteAverage > $1.voteAverage }).prefix(10).map { $0 })
-                    
-                case .failure(let error) :
-                    SVProgressHUD.dismiss()
-                    completionBlock(false, nil)
-                    onErrorHandling?(error)
-                }
+    func getMovies() {
+        SVProgressHUD.show()
+        AF.request(MOVIE_LIST).responseDecodable(of: MovieModel.self) { response in
+            switch response.result {
+            case .success(let movieModel):
+                self.movieList = movieModel.results.sorted(by: { $0.voteAverage > $1.voteAverage }).prefix(10).map { $0 }
+                self.onDataUpdate?()
+                SVProgressHUD.dismiss()
+            case .failure(let error):
+                self.onError?(error)
             }
-        }, type: .GET, data: nil, isAbsoluteURL: true, isSilent: true)
+        }
     }
-    
 }
