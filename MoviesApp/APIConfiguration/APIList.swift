@@ -16,4 +16,3 @@ let IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 //MARK: - APP API'S
 let MOVIE_LIST = "\(BASE_URL)movie/popular?api_key=\(API_KEY)"
 let MOVIE_DETAILS = "\(BASE_URL)movie/"
-//let MOVIE_DETAILS = "\(BASE_URL)movie/{movie_id}?api_key=\(API_KEY)"
